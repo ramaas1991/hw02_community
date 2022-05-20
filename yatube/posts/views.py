@@ -1,7 +1,7 @@
-from multiprocessing import context
 from django.shortcuts import render, get_object_or_404
 
 from .models import Post, Group
+
 
 # Главная страница
 def index(request):
@@ -9,7 +9,8 @@ def index(request):
     context = {
         'posts': posts,
     }
-    return render (request, 'posts/index.html', context)
+    return render(request, 'posts/index.html', context)
+
 
 # Посты, отфильтрованные по группам
 def group_posts(request, slug):
@@ -19,4 +20,4 @@ def group_posts(request, slug):
         'group': group,
         'posts': posts,
     }
-    return render (request, 'posts/group_list.html', context)
+    return render(request, 'posts/group_list.html', context)
