@@ -1,21 +1,23 @@
-{% extends 'base.html' %}
-{% block title %}
-  {{ title }}
-{% endblock %}
-{% block content %}
-{% for post in posts %}
-  <ul>
-    <li>
-      Автор: {{ post.author.get_full_name }}
-    </li>
-    <li>
-      Дата публикации: {{ post.pub_date|date:"d E Y" }}
-    </li>
-  </ul>
-  <p>{{ post.text }}</p>
-  {% if post.group %}
-    <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
-  {% endif %}
-  {% if not forloop.last %}<hr>{% endif %}
-{% endfor %}
-{% endblock %}
+{% extends 'base.HTML' %}
+  {% block title %}
+    {{ title }}
+  {% endblock %}
+  {% block content %}
+    {% for post in posts %}
+      <article>
+        <ul>
+          <li>
+            Автор: {{ post.author.get_full_name }}
+          </li>
+          <li>
+            Дата публикации: {{ post.pub_date|date:"d E Y" }}
+          </li>
+        </ul>
+      </article>
+      <p>{{ post.text|linebreaks }}</p>
+    {% if post.group %}
+      <a href="{% url 'posts:group_posts' post.group.slug %}">Группа</a>
+    {% endif %}
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+  {% endblock %}
