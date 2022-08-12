@@ -11,8 +11,10 @@ Pub_limit = 10
 
 def index(request):
     posts = Post.objects.order_by('-pub_date')[:Pub_limit]
+    title = 'заголовок'
     context = {
         'posts': posts,
+        'title': title,
     }
     return render(request, 'posts/index.html', context)
 
@@ -20,6 +22,7 @@ def index(request):
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all().order_by('-pub_date')[:Pub_limit]
+    title = 'заголовок'
     context = {
         'group': group,
         'posts': posts,
