@@ -9,7 +9,7 @@ class Group(models.Model):
     slug = models.SlugField(
         unique=True,
         verbose_name='URL',
-        )
+    )
     description = models.TextField()
 
     def __str__(self):
@@ -21,7 +21,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата публикации'
-        )
+    )
     group = models.ForeignKey(
         Group,
         blank=True,
@@ -29,7 +29,7 @@ class Post(models.Model):
         on_delete=models.SET_NULL,
         verbose_name='группа',
         related_name='posts'
-        )
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
