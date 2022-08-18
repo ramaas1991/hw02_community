@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
-  {% block title %}
-    {{ title }}
-  {% endblock %}
-  {% block content %}
+
+{% block title %}
+  Список постов
+{% endblock %}
+
+{% block content %}
+  <div class="container py-5"> 
+    <h1>{{group.title}}</h1>
     {% for post in posts %}
       <article>
         <ul>
@@ -15,9 +19,12 @@
         </ul>
       </article>
       <p>{{ post.text|linebreaks }}</p>
-    {% if post.group %}
-      <a href="{% url 'posts:group_posts' post.group.slug %}">Группа</a>
-    {% endif %}
+      {% if post.group %}
+        <a href="{% url 'posts:group_posts' post.group.slug %}">Группа</a>
+      {% else %}
+        <span style='color: red'>Этой публикации нет ни в одном сообществе.</span>
+      {% endif %}
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
-  {% endblock %}
+  </div>
+{% endblock %}
