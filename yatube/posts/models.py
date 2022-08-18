@@ -52,6 +52,6 @@ class Post(models.Model):
         verbose_name = 'пост'
         verbose_name_plural = 'посты'
         ordering = ('-pub_date',)
-    
+
     def __str__(self) -> str:
-        return self.text [:Limit_text]
+        return self.text[:Limit_text]
