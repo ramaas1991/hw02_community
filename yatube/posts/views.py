@@ -10,7 +10,7 @@ User = get_user_model()
 
 
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:settings.PUB_LIMIT]
+    posts = Post.objects.all()[:settings.PUB_LIMIT]
     context = {
         'posts': posts,
     }
@@ -19,7 +19,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all().order_by('-pub_date')[:settings.PUB_LIMIT]
+    posts = group.posts.all()[:settings.PUB_LIMIT]
     context = {
         'group': group,
         'posts': posts,

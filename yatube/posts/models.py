@@ -8,8 +8,8 @@ Limit_text = 30
 
 class Group(models.Model):
     title = models.CharField(
+        'Заголовок',
         max_length=200,
-        verbose_name='Заголовок'
     )
     slug = models.SlugField(
         unique=True,
